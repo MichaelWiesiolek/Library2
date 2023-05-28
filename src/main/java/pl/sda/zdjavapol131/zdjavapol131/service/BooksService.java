@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.sda.zdjavapol131.zdjavapol131.repository.BooksRepository;
 import pl.sda.zdjavapol131.zdjavapol131.repository.dao.BooksEntity;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Service
 public class BooksService {
@@ -17,7 +17,7 @@ public class BooksService {
     }
 
 
-    public void addNewBook(String author, String title, String publisher, String category, Date releaseDate){
+    public void addNewBook(String author, String title, String publisher, String category, LocalDate releaseDate){
         BooksEntity entity = new BooksEntity();
         entity.setAuthor(author);
         entity.setTitle(title);
