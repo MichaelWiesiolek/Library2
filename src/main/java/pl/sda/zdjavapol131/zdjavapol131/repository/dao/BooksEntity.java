@@ -1,13 +1,19 @@
 package pl.sda.zdjavapol131.zdjavapol131.repository.dao;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Data
 @Table(name = "books")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class BooksEntity {
 
     @Id
@@ -23,5 +29,5 @@ public class BooksEntity {
     @Column(name = "category")
     private String category;
     @Column(name = "release_date")
-    private Date releaseDate;
+    private LocalDate releaseDate;
 }
