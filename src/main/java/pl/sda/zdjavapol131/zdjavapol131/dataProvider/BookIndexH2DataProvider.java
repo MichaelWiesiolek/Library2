@@ -7,6 +7,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 import pl.sda.zdjavapol131.zdjavapol131.repository.BooksRepository;
 import pl.sda.zdjavapol131.zdjavapol131.repository.dao.BooksEntity;
+import pl.sda.zdjavapol131.zdjavapol131.service.BooksService;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,9 +18,11 @@ import java.util.stream.Collectors;
 @Component
 public class BookIndexH2DataProvider implements CommandLineRunner {
     private final BooksRepository booksRepository;
+    private final BooksService booksService;
     @Autowired
-    public BookIndexH2DataProvider(BooksRepository booksRepository) {
+    public BookIndexH2DataProvider(BooksRepository booksRepository, BooksService booksService) {
         this.booksRepository = booksRepository;
+        this.booksService = booksService;
     }
 
 
@@ -42,6 +45,7 @@ public class BookIndexH2DataProvider implements CommandLineRunner {
                         .releaseDate(LocalDate.parse(x[4].concat("-").concat(x[5]).concat("-").concat(x[6])))
                         .build())
                 .collect(Collectors.toList());
-        System.out.println(collect);
-    }
+
+         collect.forEach(booksEntity -> booksService.addNewBook(booksEntity.getAuthor(), booksEntity.getTitle(), booksEntity.getPublisher(), booksEntity.getCategory(), booksEntity.getReleaseDate()));
+}
 }
