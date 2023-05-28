@@ -6,6 +6,10 @@ import pl.sda.zdjavapol131.zdjavapol131.repository.BooksRepository;
 import pl.sda.zdjavapol131.zdjavapol131.repository.dao.BooksEntity;
 
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 @Service
 public class BooksService {
@@ -25,10 +29,43 @@ public class BooksService {
         entity.setCategory(category);
         entity.setReleaseDate(releaseDate);
         booksRepository.save(entity);
-
     }
     public void removeBook(){
 
+    }
+
+    public List<BooksEntity> getAllBooks(){
+        List<BooksEntity> allBooks = booksRepository.findAll();
+        return allBooks;
+    }
+
+    public List<BooksEntity> getSortedBooks(String parameter) {
+        List<BooksEntity> allBooks = booksRepository.findAll();
+        switch (parameter) {
+            case "author" -> {
+                allBooks.sort(Comparator.comparing(BooksEntity::getAuthor));
+                return allBooks;
+            }
+            case "title" -> {
+                allBooks.sort(Comparator.comparing(BooksEntity::getTitle));
+                return allBooks;
+            }
+            case "publisher" -> {
+                allBooks.sort(Comparator.comparing(BooksEntity::getPublisher));
+                return allBooks;
+            }
+            case "category" -> {
+                allBooks.sort(Comparator.comparing(BooksEntity::getCategory));
+                return allBooks;
+            }
+            case "releaseDate" -> {
+                allBooks.sort(Comparator.comparing(BooksEntity::getReleaseDate));
+                return allBooks;
+            }
+            default -> {
+                return allBooks;
+            }
+        }
     }
 
 }
