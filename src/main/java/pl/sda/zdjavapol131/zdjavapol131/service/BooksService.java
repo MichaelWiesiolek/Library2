@@ -24,6 +24,8 @@ public class BooksService {
         entity.setPublisher(publisher);
         entity.setCategory(category);
         entity.setReleaseDate(releaseDate);
+        booksRepository.save(entity);
+
     }
     public void removeBook(){
 

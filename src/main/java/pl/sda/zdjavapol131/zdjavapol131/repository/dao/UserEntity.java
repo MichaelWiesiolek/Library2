@@ -1,9 +1,11 @@
 package pl.sda.zdjavapol131.zdjavapol131.repository.dao;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
-@Table(name = "user")
+@Data
+@Table(name = "users")
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
