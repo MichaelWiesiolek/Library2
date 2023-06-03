@@ -15,4 +15,6 @@ public class UserService {
     }
     public void logIn(){}
     public void registration (){}
+
+    public void createReservation(){}
 }
