@@ -9,19 +9,21 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class BooksController {
     private BooksService booksService;
 
     @Autowired
     public BooksController(BooksService booksService){this.booksService = booksService;}
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(method = RequestMethod.GET, path = "/books")
-    public List<BooksEntity> getAllBooks(){return booksService.getAllBooks();}
 
-    @RequestMapping(method = RequestMethod.GET, path = "/books?sortBy={parameter}")
-    public List<BooksEntity> getSortedBooks(@PathVariable String parameter){
-        return booksService.getSortedBooks(parameter);}
+    @RequestMapping(method = RequestMethod.GET, path = "/books")
+    public List<BooksEntity> getAllBooks() {return booksService.getAllBooks();}
+
+    @RequestMapping(method = RequestMethod.GET, path = "/books", params = {"sortBy"})
+    public List<BooksEntity> getSortedBooks(@RequestParam(name = "sortBy", required = false) String parameter) {
+        return booksService.getSortedBooks(parameter);
+    }
 
 
 
