@@ -20,7 +20,7 @@ public class UserController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> createReservation(@RequestBody String email, Integer phoneNumber){
-
+        userService.createReservation(email, phoneNumber);
         return new ResponseEntity<>(email + " "+ phoneNumber, HttpStatus.CREATED);
     }
 }

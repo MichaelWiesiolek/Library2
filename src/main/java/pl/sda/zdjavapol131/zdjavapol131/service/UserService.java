@@ -1,5 +1,6 @@
 package pl.sda.zdjavapol131.zdjavapol131.service;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.zdjavapol131.zdjavapol131.repository.UserRepository;
@@ -16,5 +17,7 @@ public class UserService {
     public void logIn(){}
     public void registration (){}
 
-    public void createReservation(){}
+    public void createReservation(String email, Integer phoneNumber){
+
+    }
 }
