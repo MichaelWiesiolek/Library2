@@ -1,6 +1,7 @@
 package pl.sda.zdjavapol131.zdjavapol131.controller;
 
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.zdjavapol131.zdjavapol131.model.dto.UserDto;
 import pl.sda.zdjavapol131.zdjavapol131.repository.UserRepository;
@@ -14,6 +15,7 @@ public class RegistrationController {
     private UserRepository userRepository;
     private RegistrationService registrationService;
 
+    @Autowired
     public RegistrationController(UserService userService, UserRepository userRepository, RegistrationService registrationService){
         this.userService = userService;
         this.userRepository = userRepository;

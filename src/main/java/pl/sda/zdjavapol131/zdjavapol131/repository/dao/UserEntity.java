@@ -2,6 +2,7 @@ package pl.sda.zdjavapol131.zdjavapol131.repository.dao;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import pl.sda.zdjavapol131.zdjavapol131.enums.UserRole;
 
 @Entity
 @Data
@@ -21,4 +22,6 @@ public class UserEntity {
     private int phoneNumber;
     @Column(name = "password")
     private String password;
+    @Column(name = "role")
+    private UserRole userRole = null;
 }

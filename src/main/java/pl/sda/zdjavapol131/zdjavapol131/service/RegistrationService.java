@@ -2,6 +2,7 @@ package pl.sda.zdjavapol131.zdjavapol131.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.sda.zdjavapol131.zdjavapol131.enums.UserRole;
 import pl.sda.zdjavapol131.zdjavapol131.model.dto.UserDto;
 import pl.sda.zdjavapol131.zdjavapol131.repository.UserRepository;
 import pl.sda.zdjavapol131.zdjavapol131.repository.dao.UserEntity;
@@ -23,6 +24,7 @@ public class RegistrationService {
         if (existingUser != null) {
             return "There is already an account registered with that email";
         } else {
+            userDto.setUserRole(UserRole.USER);
             userService.saveUser(userDto);
             return "Registered";
         }

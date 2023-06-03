@@ -25,6 +25,7 @@ public class UserService {
         userEntity.setEmail(userDto.getEmail());
         userEntity.setPhoneNumber(userDto.getPhoneNumber());
         userEntity.setPassword(userDto.getPassword());
+        userEntity.setUserRole(userDto.getUserRole());
         userRepository.save(userEntity);
     }
     public UserEntity findByEmail(String email){

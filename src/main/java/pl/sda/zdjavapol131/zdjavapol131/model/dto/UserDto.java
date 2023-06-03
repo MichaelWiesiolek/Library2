@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
+import pl.sda.zdjavapol131.zdjavapol131.enums.UserRole;
 
 @Data
 public class UserDto {
@@ -17,4 +18,5 @@ public class UserDto {
     private int phoneNumber;
     @NotEmpty
     private String password;
+    private UserRole userRole;
 }
