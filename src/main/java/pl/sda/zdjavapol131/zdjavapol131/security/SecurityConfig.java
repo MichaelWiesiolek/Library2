@@ -32,7 +32,7 @@ public class SecurityConfig {
                                 .requestMatchers("/index").permitAll()
                                 .requestMatchers("/books").permitAll()
                                 .requestMatchers(("/reservation")).hasRole("USER")
-                                .requestMatchers("/users").hasRole("ADMIN")
+                                .requestMatchers("/users").permitAll()
                                 .anyRequest().permitAll()
                 ).formLogin(
                         form -> form
@@ -42,7 +42,7 @@ public class SecurityConfig {
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                 .permitAll()
-                );
+                ).headers(x -> x.frameOptions(y -> y.sameOrigin()));
         return http.build();
     }
 

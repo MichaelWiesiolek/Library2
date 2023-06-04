@@ -1,6 +1,7 @@
 package pl.sda.zdjavapol131.zdjavapol131.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.sda.zdjavapol131.zdjavapol131.model.dto.UserDto;
 import pl.sda.zdjavapol131.zdjavapol131.repository.UserRepository;
@@ -13,12 +14,12 @@ import java.util.List;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-
-
+        this.passwordEncoder = passwordEncoder;
     }
     public void saveUser(UserDto userDto){
         UserEntity userEntity = new UserEntity();
@@ -26,7 +27,7 @@ public class UserService {
         userEntity.setSurname(userDto.getSurname());
         userEntity.setEmail(userDto.getEmail());
         userEntity.setPhoneNumber(userDto.getPhoneNumber());
-        userEntity.setPassword(userDto.getPassword());
+        userEntity.setPassword(passwordEncoder.encode(userDto.getPassword()));
         userEntity.setUserRole(userDto.getUserRole());
         userRepository.save(userEntity);
     }
@@ -38,9 +39,6 @@ public class UserService {
         return users;
     }
 
-
-    public void logIn(){}
-    public void use (){}
     public void createReservation(String email, String phoneNumber){
         ReservationEntity reservationEntity = new ReservationEntity();
         reservationEntity.setEmail(email);
