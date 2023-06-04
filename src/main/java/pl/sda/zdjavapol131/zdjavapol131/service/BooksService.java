@@ -6,8 +6,6 @@ import pl.sda.zdjavapol131.zdjavapol131.repository.BooksRepository;
 import pl.sda.zdjavapol131.zdjavapol131.repository.dao.BooksEntity;
 
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -30,7 +28,11 @@ public class BooksService {
         entity.setReleaseDate(releaseDate);
         booksRepository.save(entity);
     }
-    public void removeBook(){
+
+
+    public void removeBook( int id){
+        booksRepository.deleteById(id);
+
     }
 
     public List<BooksEntity> getAllBooks(){

@@ -23,4 +23,6 @@ public class ReservationController {
     public List<ReservationEntity> getAllReservations() {
         return reservationService.getAllReservations();
     }
+
+
 }

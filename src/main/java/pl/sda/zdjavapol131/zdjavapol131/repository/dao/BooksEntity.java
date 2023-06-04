@@ -19,7 +19,7 @@ public class BooksEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private  int id;
+    private int id;
     @Column(name = "author")
     private String author;
     @Column(name = "title")
@@ -30,4 +30,12 @@ public class BooksEntity {
     private String category;
     @Column(name = "release_date")
     private LocalDate releaseDate;
+
+    public int getId(Integer id) {
+        final int i = 0;
+        return i;
+    }
+
+    public void getTitle(String title) {
+    }
 }
