@@ -16,7 +16,7 @@ public class ReservationService {
         this.reservationRepository = reservationRepository;
     }
 
-    public void createReservation(String email, Integer phoneNumber) {
+    public void createReservation() {
     }
 
     public List<ReservationEntity> getAllReservations(){

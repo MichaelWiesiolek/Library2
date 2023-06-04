@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.zdjavapol131.zdjavapol131.model.dto.UserDto;
 import pl.sda.zdjavapol131.zdjavapol131.repository.UserRepository;
+import pl.sda.zdjavapol131.zdjavapol131.repository.dao.ReservationEntity;
 import pl.sda.zdjavapol131.zdjavapol131.repository.dao.UserEntity;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -38,8 +40,24 @@ public class UserService {
 
 
     public void logIn(){}
-    public void registration (){}
+    public void use (){}
     public void createReservation(String email, String phoneNumber){
+        ReservationEntity reservationEntity = new ReservationEntity();
+        reservationEntity.setEmail(email);
+        reservationEntity.setPhoneNumber(phoneNumber);
+        reservationEntity.setLendingDate(LocalDate.now());
+        reservationEntity.setReturnDate(LocalDate.now().plusDays(14));
+    }
+
+    public UserDto userEntityToUserDtoConverter(UserEntity userEntity){
+        UserDto newUser = new UserDto();
+        newUser.setName(userEntity.getName());
+        newUser.setSurname(userEntity.getSurname());
+        newUser.setEmail(userEntity.getEmail());
+        newUser.setPhoneNumber(userEntity.getPhoneNumber());
+        newUser.setPassword(userEntity.getPassword());
+        newUser.setUserRole(userEntity.getUserRole());
+        return newUser;
     }
 
 }

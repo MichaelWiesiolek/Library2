@@ -3,6 +3,9 @@ package pl.sda.zdjavapol131.zdjavapol131.repository.dao;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
+import java.util.List;
+
 
 @Entity
 @Data
@@ -16,5 +19,11 @@ public class ReservationEntity {
     @Column(name = "email")
     private String email;
     @Column(name = "phone_number")
-    private Integer phoneNumber;
+    private String phoneNumber;
+    @Column(name = "lendingDate")
+    private LocalDate lendingDate;
+    @Column(name ="returnDate")
+    private LocalDate returnDate;
+    //@Column(name = "basket")
+    //private List<BooksEntity> basket;
 }

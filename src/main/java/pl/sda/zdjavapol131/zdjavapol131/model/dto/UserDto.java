@@ -15,8 +15,10 @@ public class UserDto {
     private String surname;
     @Email
     private String email;
-    private int phoneNumber;
+    private String phoneNumber;
     @NotEmpty
     private String password;
     private UserRole userRole;
+
+
 }
