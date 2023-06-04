@@ -6,6 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 import pl.sda.zdjavapol131.zdjavapol131.enums.UserRole;
+import pl.sda.zdjavapol131.zdjavapol131.model.dto.UserDto;
 import pl.sda.zdjavapol131.zdjavapol131.repository.UserRepository;
 import pl.sda.zdjavapol131.zdjavapol131.repository.dao.UserEntity;
 import pl.sda.zdjavapol131.zdjavapol131.service.UserService;
@@ -46,8 +47,8 @@ public class UserH2DataProvider implements CommandLineRunner {
                         .userRole(UserRole.valueOf(x[4]))
                         .build())
                 .collect(Collectors.toList());
-        collect.forEach(userEntity -> userService.userEntityToUserDtoConverter(userEntity));
-        //do poprawy
+        userRepository.saveAll(collect);
+
 
     }
 }
