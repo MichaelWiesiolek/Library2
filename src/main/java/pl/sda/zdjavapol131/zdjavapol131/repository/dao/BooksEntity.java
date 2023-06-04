@@ -31,11 +31,4 @@ public class BooksEntity {
     @Column(name = "release_date")
     private LocalDate releaseDate;
 
-    public int getId(Integer id) {
-        final int i = 0;
-        return i;
-    }
-
-    public void getTitle(String title) {
-    }
 }
