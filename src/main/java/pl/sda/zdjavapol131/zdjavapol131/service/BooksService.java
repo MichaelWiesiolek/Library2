@@ -31,7 +31,6 @@ public class BooksService {
         booksRepository.save(entity);
     }
     public void removeBook(){
-
     }
 
     public List<BooksEntity> getAllBooks(){

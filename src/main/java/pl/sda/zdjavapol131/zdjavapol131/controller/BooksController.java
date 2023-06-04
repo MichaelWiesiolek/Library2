@@ -16,8 +16,8 @@ public class BooksController {
     public BooksController(BooksService booksService){this.booksService = booksService;}
 
 
-    //@RequestMapping(method = RequestMethod.GET, path = "/books")
-   // public List<BooksEntity> getAllBooks() {return booksService.getAllBooks();}
+    @RequestMapping(method = RequestMethod.GET, path = "/books")
+   public List<BooksEntity> getAllBooks() {return booksService.getAllBooks();}
 
     @RequestMapping(method = RequestMethod.GET, path = "/books", params = {"sortBy"})
     public List<BooksEntity> getSortedBooks(@RequestParam(name = "sortBy", required = false) String parameter) {

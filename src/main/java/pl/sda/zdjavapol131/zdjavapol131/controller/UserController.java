@@ -26,6 +26,8 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(path ="/users/createReservation",
             consumes = MediaType.APPLICATION_JSON_VALUE,
