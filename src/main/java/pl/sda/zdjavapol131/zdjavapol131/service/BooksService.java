@@ -2,6 +2,7 @@ package pl.sda.zdjavapol131.zdjavapol131.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.sda.zdjavapol131.zdjavapol131.model.dto.BookDto;
 import pl.sda.zdjavapol131.zdjavapol131.repository.BooksRepository;
 import pl.sda.zdjavapol131.zdjavapol131.repository.dao.BooksEntity;
 

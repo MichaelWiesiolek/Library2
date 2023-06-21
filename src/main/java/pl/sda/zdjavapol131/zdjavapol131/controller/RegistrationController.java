@@ -8,6 +8,8 @@ import pl.sda.zdjavapol131.zdjavapol131.repository.UserRepository;
 import pl.sda.zdjavapol131.zdjavapol131.service.RegistrationService;
 import pl.sda.zdjavapol131.zdjavapol131.service.UserService;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class RegistrationController {
@@ -21,8 +23,12 @@ public class RegistrationController {
         this.userRepository = userRepository;
         this.registrationService = registrationService;
     }
+    @GetMapping(path = "/register")
+    public String register(){
+        return "Register";
+    }
 
-    @PostMapping(path = "/register")
+    @PostMapping(path = "/register/new")
     public String registration(@Valid @RequestBody UserDto userDto){
        return registrationService.userRegistration(userDto);
     }
