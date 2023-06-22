@@ -20,7 +20,7 @@ public class RegistrationService {
     }
 
     public String userRegistration(UserDto userDto) {
-        UserEntity existingUser = userService.findByEmail(userDto.getEmail());
+        UserEntity existingUser = userService.findUserByEmail(userDto.getEmail());
         if (existingUser != null) {
             return "There is already an account registered with that email";
         } else {

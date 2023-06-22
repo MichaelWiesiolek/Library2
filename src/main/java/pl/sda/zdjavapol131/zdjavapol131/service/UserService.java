@@ -31,9 +31,10 @@ public class UserService {
         userEntity.setUserRole(userDto.getUserRole());
         userRepository.save(userEntity);
     }
-    public UserEntity findByEmail(String email){
+    public UserEntity findUserByEmail(String email){
         return userRepository.findByEmail(email);
     }
+
     public List<UserEntity> getAllUsers(){
         List<UserEntity> users = userRepository.findAll();
         return users;

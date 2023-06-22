@@ -32,11 +32,11 @@ public class SecurityConfig {
                                 .requestMatchers("/index").permitAll()
                                 .requestMatchers("/books").hasAuthority("USER")
                                 .requestMatchers(("/reservation")).hasAuthority("USER")
-                                .requestMatchers("/users").hasAuthority("ADMIN")
+                                .requestMatchers("/users").hasAuthority("USER")
                                 .anyRequest().permitAll()
                 ).formLogin(
                         form -> form
-                                .defaultSuccessUrl("/users")
+                                .defaultSuccessUrl("/index")
                                 .permitAll()
                 ).logout(
                         logout -> logout
