@@ -37,33 +37,61 @@
                 <a th:href="@{'/page/' + ${currentPage} + '?sort-field=id&sort-dir=' + ${reverseSortDir}}">Id</a>
             </th>
             <th>
-                <a th:href="@{'/page/' + ${currentPage} + '?sort-field=firstName&sort-dir=' + ${reverseSortDir}}">Title</a>
+                <a th:href="@{'/page/' + ${currentPage} + '?sort-field=title&sort-dir=' + ${reverseSortDir}}">Title</a>
             </th>
             <th>
-                <a th:href="@{'/page/' + ${currentPage} + '?sort-field=lastName&sort-dir=' + ${reverseSortDir}}">Author</a>
+                <a th:href="@{'/page/' + ${currentPage} + '?sort-field=author&sort-dir=' + ${reverseSortDir}}">Author</a>
             </th>
             <th>
-                <a th:href="@{'/page/' + ${currentPage} + '?sort-field=lastName&sort-dir=' + ${reverseSortDir}}">Category</a>
+                <a th:href="@{'/page/' + ${currentPage} + '?sort-field=category&sort-dir=' + ${reverseSortDir}}">Category</a>
             </th>
             <th>
-                <a th:href="@{'/page/' + ${currentPage} + '?sort-field=lastName&sort-dir=' + ${reverseSortDir}}">Publisher</a>
+                <a th:href="@{'/page/' + ${currentPage} + '?sort-field=publisher&sort-dir=' + ${reverseSortDir}}">Publisher</a>
             </th>
             <th>
-                <a th:href="@{'/page/' + ${currentPage} + '?sort-field=lastName&sort-dir=' + ${reverseSortDir}}">Release date</a>
+                <a th:href="@{'/page/' + ${currentPage} + '?sort-field=releaseDate&sort-dir=' + ${reverseSortDir}}">Release date</a>
             </th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each = "book : ${books}">
-            <td th:text = "${book.id}"></td>
-            <td th:text = "${book.title}"></td>
-            <td th:text = "${book.author}"></td>
-            <td th:text = "${book.category}"></td>
-            <td th:text = "${book.publisher}"></td>
-            <td th:text = "${book.releaseDate}"></td>
+        <tr th:each = "listBooks : ${listBook}">
+            <td th:text = "${listBooks.id}"></td>
+            <td th:text = "${listBooks.title}"></td>
+            <td th:text = "${listBooks.author}"></td>
+            <td th:text = "${listBooks.category}"></td>
+            <td th:text = "${listBooks.publisher}"></td>
+            <td th:text = "${listBooks.releaseDate}"></td>
         </tr>
         </tbody>
     </table>
+    <div th:if="${totalPages > 1}">
+        <div class="row col-sm-10">
+            <div class="col-sm-2">
+                Total books: <strong>[[${totalItems}]]</strong>
+            </div>
+            <div class="col-sm-1">
+                    <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                        <a th:href="@{'/page/' + ${i} + '?sort-field=' + ${sortField} + '&sort-dir=' + ${sortDir}}"
+                           th:if="${currentPage != i}">[[${i}]]</a>
+                        <span th:unless="${currentPage != i}">[[${i}]]</span>
+                    </span>
+            </div>
+            <div class="col-sm-1">
+                <a th:href="@{'/page/' + ${currentPage + 1} + '?sort-field=' + ${sortField} + '&sort-dir=' + ${sortDir}}"
+                   th:if="${currentPage < totalPages}">
+                    Next
+                </a>
+                <span th:unless="${currentPage < totalPages}">Next</span>
+            </div>
+            <div class="col-sm-1">
+                <a th:href="@{'/page/' + ${totalPages} + '?sort-field=' + ${sortField} + '&sort-dir=' + ${sortDir}}"
+                   th:if="${currentPage < totalPages}">
+                    Last
+                </a>
+                <span th:unless="${currentPage < totalPages}">Last</span>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

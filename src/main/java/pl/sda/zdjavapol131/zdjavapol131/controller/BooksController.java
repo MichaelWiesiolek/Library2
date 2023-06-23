@@ -21,16 +21,47 @@ public class BooksController {
     public BooksController(BooksService booksService){this.booksService = booksService;}
 
 
-    @GetMapping("/books")
-   public String getAllBooks(Model model) {
-        List<BooksEntity> books = booksService.getAllBooks();
-        model.addAttribute("books",books);
-        return "books";
-    }
+//    @GetMapping("/books")
+//   public String getAllBooks(Model model) {
+//        List<BooksEntity> books = booksService.getAllBooks();
+//        model.addAttribute("books",books);
+//        return "books";
+//    }
 
     @RequestMapping(method = RequestMethod.GET, path = "/books", params = {"sortBy"})
     public List<BooksEntity> getSortedBooks(@RequestParam(name = "sortBy", required = false) String parameter) {
         return booksService.getSortedBooks(parameter);
+    }
+
+    @GetMapping(value = "/books")
+    public String viewIndexPage() {
+        // During the index page we are using the sort-field as id and sort-dir as asc.
+        return "redirect:page/1?sort-field=id&sort-dir=asc";
+    }
+
+    @GetMapping(value = "/page/{page-number}")
+    public String findPaginated(@PathVariable(name = "page-number") final int pageNo,
+                                @RequestParam(name = "sort-field") final String sortField,
+                                @RequestParam(name = "sort-dir") final String sortDir,
+                                final Model model) {
+        final int pageSize = 10;
+        final Page<BooksEntity> page = booksService.findPaginated(pageNo, pageSize, sortField, sortDir);
+        final List<BooksEntity> listBooks = page.getContent();
+
+        // Creating the model response.
+        // Note for simplicity purpose we are not making the use of ResponseDto here.
+        // In ideal cases the response will be encapsulated in a class.
+        // pagination parameters
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+        // sorting parameters
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+        // employees
+        model.addAttribute("listBook", listBooks);
+        return "books";
     }
 
 

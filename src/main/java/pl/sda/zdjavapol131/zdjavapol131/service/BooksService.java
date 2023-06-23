@@ -1,8 +1,11 @@
 package pl.sda.zdjavapol131.zdjavapol131.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import pl.sda.zdjavapol131.zdjavapol131.model.dto.BookDto;
 import pl.sda.zdjavapol131.zdjavapol131.repository.BooksRepository;
 import pl.sda.zdjavapol131.zdjavapol131.repository.dao.BooksEntity;
 
@@ -20,7 +23,7 @@ public class BooksService {
     }
 
 
-    public void addNewBook(String author, String title, String publisher, String category, LocalDate releaseDate){
+    public void addNewBook(String author, String title, String publisher, String category, LocalDate releaseDate) {
         BooksEntity entity = new BooksEntity();
         entity.setAuthor(author);
         entity.setTitle(title);
@@ -31,12 +34,12 @@ public class BooksService {
     }
 
 
-    public void removeBook( int id){
+    public void removeBook(int id) {
         booksRepository.deleteById(id);
 
     }
 
-    public List<BooksEntity> getAllBooks(){
+    public List<BooksEntity> getAllBooks() {
         List<BooksEntity> allBooks = booksRepository.findAll();
         return allBooks;
     }
@@ -70,4 +73,12 @@ public class BooksService {
         }
     }
 
+
+    public Page<BooksEntity> findPaginated(int pageNumber, final int pageSize, final String sortField, final String sortDirection) {
+        final Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ?
+                Sort.by(sortField).ascending() : Sort.by(sortField).descending();
+        final Pageable pageable = PageRequest.of(pageNumber - 1, pageSize, sort);
+        return booksRepository.findAll(pageable);
+    }
 }
+
