@@ -31,8 +31,9 @@ public class SecurityConfig {
                         authorize.requestMatchers("/register").permitAll()
                                 .requestMatchers("/index").permitAll()
                                 .requestMatchers("/books").hasAuthority("USER")
-                                .requestMatchers(("/reservation")).hasAuthority("USER")
+                                .requestMatchers(("/reservation")).permitAll()
                                 .requestMatchers("/users").hasAuthority("USER")
+                                .requestMatchers("/reservations").hasAuthority("USER")
                                 .anyRequest().permitAll()
                 ).formLogin(
                         form -> form

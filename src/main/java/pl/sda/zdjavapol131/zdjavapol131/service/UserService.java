@@ -40,13 +40,13 @@ public class UserService {
         return users;
     }
 
-    public void createReservation(String email, String phoneNumber){
-        ReservationEntity reservationEntity = new ReservationEntity();
-        reservationEntity.setEmail(email);
-        reservationEntity.setPhoneNumber(phoneNumber);
-        reservationEntity.setLendingDate(LocalDate.now());
-        reservationEntity.setReturnDate(LocalDate.now().plusDays(14));
-    }
+//    public void createReservation(String email, String phoneNumber){
+//        ReservationEntity reservationEntity = new ReservationEntity();
+//        reservationEntity.setEmail(email);
+//        reservationEntity.setPhoneNumber(phoneNumber);
+//        reservationEntity.setLendingDate(LocalDate.now());
+//        reservationEntity.setReturnDate(LocalDate.now().plusDays(14));
+//    }
 
     public UserDto userEntityToUserDtoConverter(UserEntity userEntity){
         UserDto newUser = new UserDto();

@@ -21,9 +21,9 @@ public class ReservationEntity {
     @Column(name = "phone_number")
     private String phoneNumber;
     @Column(name = "lendingDate")
-    private LocalDate lendingDate;
+    private String lendingDate;
     @Column(name ="returnDate")
-    private LocalDate returnDate;
+    private String returnDate;
     //@Column(name = "basket")
     //private List<BooksEntity> basket;
 }
