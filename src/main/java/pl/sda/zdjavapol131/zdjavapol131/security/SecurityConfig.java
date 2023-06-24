@@ -30,13 +30,14 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers("/register").permitAll()
                                 .requestMatchers("/index").permitAll()
-                                .requestMatchers("/books").permitAll()
-                                .requestMatchers(("/reservation")).hasRole("USER")
-                                .requestMatchers("/users").permitAll()
+//                                .requestMatchers("/books").hasAuthority("USER")
+//                                .requestMatchers(("/reservation")).permitAll()
+//                                .requestMatchers("/users").hasAuthority("USER")
+                                .requestMatchers("/reservations").hasAuthority("USER")
                                 .anyRequest().permitAll()
                 ).formLogin(
                         form -> form
-                                .defaultSuccessUrl("/users")
+                                .defaultSuccessUrl("/index")
                                 .permitAll()
                 ).logout(
                         logout -> logout

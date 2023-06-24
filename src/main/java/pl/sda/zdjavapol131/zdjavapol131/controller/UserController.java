@@ -28,13 +28,13 @@ public class UserController {
 
 
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(path ="/users/createReservation",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public void createReservation(@RequestBody ReservationRequest request){
-        userService.createReservation(request.getEmail(),request.getPhoneNumber());
-    }
+//    @ResponseStatus(HttpStatus.CREATED)
+//    @PostMapping(path ="/users/createReservation",
+//            consumes = MediaType.APPLICATION_JSON_VALUE,
+//            produces = MediaType.APPLICATION_JSON_VALUE)
+//    public void createReservation(@RequestBody ReservationRequest request){
+//        userService.createReservation(request.getEmail(),request.getPhoneNumber());
+//    }
 
 
 }

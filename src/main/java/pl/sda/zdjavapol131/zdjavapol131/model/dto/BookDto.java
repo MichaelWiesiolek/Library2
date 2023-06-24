@@ -1,6 +1,5 @@
 package pl.sda.zdjavapol131.zdjavapol131.model.dto;
 
-import jakarta.persistence.Column;
 import lombok.Data;
 
 import java.time.LocalDate;

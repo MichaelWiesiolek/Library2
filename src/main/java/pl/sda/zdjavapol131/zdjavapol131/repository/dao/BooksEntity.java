@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
@@ -18,8 +19,8 @@ public class BooksEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "book_id")
+    private int Id;
     @Column(name = "author")
     private String author;
     @Column(name = "title")
@@ -30,5 +31,7 @@ public class BooksEntity {
     private String category;
     @Column(name = "release_date")
     private LocalDate releaseDate;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ReservationEntity reservationContent;
 
 }

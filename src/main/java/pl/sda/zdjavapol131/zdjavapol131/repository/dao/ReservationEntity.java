@@ -1,20 +1,27 @@
 package pl.sda.zdjavapol131.zdjavapol131.repository.dao;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import pl.sda.zdjavapol131.zdjavapol131.model.dto.BookDto;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 
 @Entity
 @Data
-@Table(name = "reservation")
+@Table(name = "reservations")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 
 public class ReservationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private int id;
     @Column(name = "email")
     private String email;
@@ -24,6 +31,8 @@ public class ReservationEntity {
     private LocalDate lendingDate;
     @Column(name ="returnDate")
     private LocalDate returnDate;
-    //@Column(name = "basket")
-    //private List<BooksEntity> basket;
+    @OneToMany(mappedBy = "reservationContent", cascade = CascadeType.ALL)
+    private List<BooksEntity> reservationContent = new ArrayList<>();
+
+
 }
