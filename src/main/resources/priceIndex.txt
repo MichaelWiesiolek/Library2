@@ -1,0 +1,3 @@
+return: 1 PLN
+delivery: 10 PLN
+lost: 100 PLN
