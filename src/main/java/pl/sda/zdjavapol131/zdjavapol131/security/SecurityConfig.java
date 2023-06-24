@@ -34,6 +34,7 @@ public class SecurityConfig {
                                 .requestMatchers(("/reservation")).hasAuthority("USER")
                                 .requestMatchers("/users").hasAuthority("ADMIN")
                                 .requestMatchers("/showReservations").hasAuthority("ADMIN")
+                                .requestMatchers("/book").hasAuthority("ADMIN")
                                 .anyRequest().permitAll()
                 ).formLogin(
                         form -> form

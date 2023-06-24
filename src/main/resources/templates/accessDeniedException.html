@@ -8,6 +8,27 @@
           rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
+    <style>
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 770px;
+        }
+
+        .resized-image {
+            width: 300px;
+            height: auto;
+        }
+        .text-center {
+            display: block;
+            align-content: center;
+            font-size: 60px;
+            color: red;
+            position: relative;
+            top: -150px;
+        }
+    </style>
 </head>
 <body>
 <style>
@@ -27,15 +48,13 @@
 </nav>
 <br/><br/>
 <div  class="container">
-    <div class="row">
-        <img th:src="@{/images/image1.jpg}" alt="Example Image" />
+    <div class="image-container">
+        <img th:src="@{/images/image2.jpg}" alt="Example Image" />
     </div>
-    <div class="container">
-        <a class="text-center" th:href="@{/index}" style="font-size: 50px; display: block; color: red;">Go back to main page</a>
+    <div class="container1">
+        <a class="text-center" th:href="@{/index}">Admin zone only <br>Go back to main page</a>
         <button class="navbar-toggler" type="button"></button>
     </div>
-
-
 
 </div>
 </body>
