@@ -12,7 +12,7 @@ import pl.sda.zdjavapol131.zdjavapol131.enums.UserRole;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Table(name = "users")
+@Table(name = "all_users")
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

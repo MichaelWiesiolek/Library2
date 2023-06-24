@@ -18,20 +18,20 @@ interface PaymentProcessor {
         // Logika zwrotu płatności przez PayPal
         System.out.println("Refunding PayPal payment: $" + amount);
     }
-  //  // Klasa implementująca procesor płatności za pośrednictwem Stripe
-  //  public class StripePaymentProcessor implements PaymentProcessor {
-  //      @Override
-  //      public void processPayment(double amount) {
-  //          // Logika przetwarzania płatności przez Stripe
-  //          System.out.println("Processing Stripe payment: $" + amount);
-  //      }
-//
-  //      @Override
-  //      public void refundPayment(double amount) {
-  //          // Logika zwrotu płatności przez Stripe
-  //          System.out.println("Refunding Stripe payment: $" + amount);
-  //      }
-  //  }
+    // Klasa implementująca procesor płatności za pośrednictwem Stripe
+    public class StripePaymentProcessor implements PaymentProcessor {
+        @Override
+        public void processPayment(double amount) {
+            // Logika przetwarzania płatności przez Stripe
+            System.out.println("Processing Stripe payment: $" + amount);
+        }
+
+        @Override
+        public void refundPayment(double amount) {
+            // Logika zwrotu płatności przez Stripe
+            System.out.println("Refunding Stripe payment: $" + amount);
+        }
+    }
 
     // Klasa reprezentująca system płatności
     class PaymentSystem {

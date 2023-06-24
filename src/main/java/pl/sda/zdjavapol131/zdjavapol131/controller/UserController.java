@@ -1,31 +1,34 @@
 package pl.sda.zdjavapol131.zdjavapol131.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.sda.zdjavapol131.zdjavapol131.model.dto.ReservationRequest;
-import pl.sda.zdjavapol131.zdjavapol131.model.dto.UserDto;
+import pl.sda.zdjavapol131.zdjavapol131.repository.UserRepository;
 import pl.sda.zdjavapol131.zdjavapol131.repository.dao.UserEntity;
 import pl.sda.zdjavapol131.zdjavapol131.service.UserService;
 
 import java.util.List;
 
-@RestController
+@Controller
 @CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
     private UserService userService;
+    private UserRepository userRepository;
 
     @Autowired
-    public UserController(UserService userService){
+    public UserController(UserService userService, UserRepository userRepository){
         this.userService = userService;
+        this.userRepository = userRepository;
     }
 
-    @GetMapping(path = "/users")
-    public List<UserEntity> getAllUsers(){
-        return userService.getAllUsers();
-    }
 
+    @GetMapping("/users")
+    public String showReservationForm(Model model){
+        List<UserEntity> users = userService.getAllUsers();
+        model.addAttribute("users", users);
+        return "users";
+    }
 
 
 //    @ResponseStatus(HttpStatus.CREATED)

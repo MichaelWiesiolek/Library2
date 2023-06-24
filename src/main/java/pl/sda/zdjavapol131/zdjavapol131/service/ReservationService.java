@@ -11,6 +11,7 @@ import pl.sda.zdjavapol131.zdjavapol131.repository.dao.ReservationEntity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ReservationService {
@@ -34,6 +35,13 @@ public class ReservationService {
         newReservation.setReservationContent(allById);
         ReservationEntity save = reservationRepository.save(newReservation);
         allById.forEach(x -> x.setReservationContent(save));
+    }
+
+    public List<Integer> getAllIds() {
+        List<BooksEntity> list = booksRepository.findAll();
+        return list.stream()
+                .map(BooksEntity::getId)
+                .collect(Collectors.toList());
     }
 
     public List<ReservationEntity> getAllReservations(){

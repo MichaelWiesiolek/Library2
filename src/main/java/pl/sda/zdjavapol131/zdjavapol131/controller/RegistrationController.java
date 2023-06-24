@@ -35,11 +35,6 @@ public class RegistrationController {
         return "register";
     }
 
-//    @PostMapping(path = "/register/save")
-//    public String registration(@Valid @RequestBody UserDto userDto){
-//       return registrationService.userRegistration(userDto);
-//    }
-
     @PostMapping("/register/save")
     public String registration(@Valid @ModelAttribute("user") UserDto userDto, BindingResult result, Model model){
         UserEntity existingUser = userService.findUserByEmail(userDto.getEmail());

@@ -6,10 +6,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import pl.sda.zdjavapol131.zdjavapol131.model.dto.BookDto;
 import pl.sda.zdjavapol131.zdjavapol131.repository.BooksRepository;
 import pl.sda.zdjavapol131.zdjavapol131.repository.dao.BooksEntity;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -36,12 +39,27 @@ public class BooksService {
 
     public void removeBook(int id) {
         booksRepository.deleteById(id);
+    }
 
+    public void createNewBook (BookDto bookDto){
+        BooksEntity newBook = new BooksEntity();
+        newBook.setAuthor(bookDto.getAuthor());
+        newBook.setTitle(bookDto.getTitle());
+        newBook.setPublisher(bookDto.getPublisher());
+        newBook.setReleaseDate(bookDto.getReleaseDate());
+        newBook.setCategory(bookDto.getCategory());
+        booksRepository.save(newBook);
     }
 
     public List<BooksEntity> getAllBooks() {
         List<BooksEntity> allBooks = booksRepository.findAll();
         return allBooks;
+    }
+    public List<String> getCategories(){
+        List<String> listCategory = Arrays.asList("Romance", "Fiction", "Fantasy", "Mystery", "Thriller", "Horror", "Adventure", "Western", "Crime", "Dystopian",
+                "Children's Literature", "Comedy", "Tragedy", "Mythology", "Biography", "Essay", "Memoir", "Drama", "Poetry","Historical");
+        Collections.sort(listCategory);
+        return listCategory;
     }
 
     public List<BooksEntity> getSortedBooks(String parameter) {
