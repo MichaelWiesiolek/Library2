@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.sda.zdjavapol131.zdjavapol131.enums.UserRole;
 import pl.sda.zdjavapol131.zdjavapol131.model.dto.UserDto;
 import pl.sda.zdjavapol131.zdjavapol131.repository.UserRepository;
 import pl.sda.zdjavapol131.zdjavapol131.repository.dao.UserEntity;
@@ -51,6 +52,7 @@ public class RegistrationController {
             model.addAttribute("user", userDto);
             return "/register";
         }
+        userDto.setUserRole(UserRole.USER);
         userService.saveUser(userDto);
         return "redirect:/register?success";
     }

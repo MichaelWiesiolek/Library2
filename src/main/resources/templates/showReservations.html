@@ -33,16 +33,24 @@
   <table class="table table-bordered table-hover">
     <thead class="table-dark">
     <tr>
-      <th> Id</th>
+      <th> Id </th>
+      <th> Email </th>
       <th> Phone Number</th>
       <th> Lending Date</th>
+      <th> Return Date</th>
+      <th> Content </th>
     </tr>
     </thead>
     <tbody>
     <tr th:each = "showReservations : ${showReservations}">
       <td th:text = "${showReservations.id}"></td>
+      <td th:text = "${showReservations.email}"></td>
       <td th:text = "${showReservations.phoneNumber}"></td>
       <td th:text = "${showReservations.lendingDate}"></td>
+      <td th:text = "${showReservations.returnDate}"></td>
+      <td>
+        <li th:each="book: ${showReservations.reservationContent}" th:text=${book.title}>Ksiazka 1</li>
+      </td>
     </tr>
     </tbody>
   </table>
