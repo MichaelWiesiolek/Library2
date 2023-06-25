@@ -14,11 +14,32 @@
             background-repeat: no-repeat;
             background-size: cover;
         }
-        .text-center{
+
+        .text-center {
             font-size: 60px;
             display: block;
             align-content: center;
         }
+
+        .video {
+            position: relative;
+            top: 100px;
+            left: -200px;
+        }
+
+        .wrapper {
+            width: 800px;
+            height: auto;
+            position: relative;
+            top: -200px;
+            right: -700px;
+        }
+        .box {
+            background-color: rgba(0, 0, 0, 0.70);
+            color: #ffffff;
+            font-size: 25px;
+        }
+
     </style>
 </head>
 <body>
@@ -45,25 +66,28 @@
                     <a class="nav-link active" aria-current="page" th:href="@{/books}">Book Index</a>
                 </li>
             </ul>
-            <ul  class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" th:href="@{/reservations}">Reservation</a>
                 </li>
             </ul>
-            <ul  sec:authorize="hasAuthority('ADMIN')" class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul sec:authorize="hasAuthority('ADMIN')" class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a style="color: #be61c5;" class="nav-link active" aria-current="page" th:href="@{/showReservations}">Show Reservations</a>
+                    <a style="color: #be61c5;" class="nav-link active" aria-current="page"
+                       th:href="@{/showReservations}">Show Reservations</a>
                 </li>
             </ul>
             </ul>
-            <ul  sec:authorize="hasAuthority('ADMIN')" class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul sec:authorize="hasAuthority('ADMIN')" class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a style="color: #be61c5;" class="nav-link active" aria-current="page" th:href="@{/users}">User Data</a>
+                    <a style="color: #be61c5;" class="nav-link active" aria-current="page" th:href="@{/users}">User
+                        Data</a>
                 </li>
             </ul>
-            <ul  sec:authorize="hasAuthority('ADMIN')" class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul sec:authorize="hasAuthority('ADMIN')" class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a style="color: #be61c5;" class="nav-link active" aria-current="page" th:href="@{/book}">Submit book</a>
+                    <a style="color: #be61c5;" class="nav-link active" aria-current="page" th:href="@{/book}">Submit
+                        book</a>
                 </li>
             </ul>
             <ul sec:authorize="isAuthenticated()" class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -77,8 +101,19 @@
 <br/><br/>
 <div class="container">
     <div class="row">
-<!--        <h1 style="color: #ffffff;" class="text-center">  Welcome </h1>-->
-        <h1> <span   class="text-center" style="color: #ffffff;" title="We are happy to see you :)"> Welcome </span> </h1>h>
+        <h1><span class="text-center" style="color: #ffffff;" title="We are happy to see you :)"> Welcome </span></h1>
+
+        <div class="video"
+             th:utext="${'&#60;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/Ls2ynrMv10A&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; encrypted-media&quot; allowfullscreen&#62;&#60;/iframe&#62;'}"></div>
+        <div class="wrapper">
+            <div class="box box">The library is a sanctuary of knowledge, where imaginations take flight and dreams find solace. Within its
+                walls, hidden treasures reside, waiting to be discovered by eager minds. It is a haven that transcends time,
+                bridging the gap between generations. In the library, stories unfold, and wisdom whispers its secrets.
+                Here, we find inspiration, escape, and enlightenment. Let the library be your compass, guiding you on a
+                journey of endless possibilities and boundless horizons.
+                Embrace the power of books, for within their pages lies the magic that can transform lives. Step into the
+                library, and let the world of words ignite your soul.</div>
+        </div>
 
     </div>
 </div>
