@@ -9,7 +9,7 @@ import pl.sda.zdjavapol131.zdjavapol131.repository.ReservationRepository;
 import pl.sda.zdjavapol131.zdjavapol131.repository.dao.BooksEntity;
 import pl.sda.zdjavapol131.zdjavapol131.repository.dao.ReservationEntity;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.stream.Collectors;
 

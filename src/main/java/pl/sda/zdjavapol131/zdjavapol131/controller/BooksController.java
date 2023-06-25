@@ -1,23 +1,15 @@
 package pl.sda.zdjavapol131.zdjavapol131.controller;
 
-import jakarta.validation.Valid;
-import org.attoparser.dom.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.sda.zdjavapol131.zdjavapol131.enums.UserRole;
 import pl.sda.zdjavapol131.zdjavapol131.model.dto.BookDto;
-import pl.sda.zdjavapol131.zdjavapol131.model.dto.UserDto;
 import pl.sda.zdjavapol131.zdjavapol131.repository.dao.BooksEntity;
-import pl.sda.zdjavapol131.zdjavapol131.repository.dao.UserEntity;
 import pl.sda.zdjavapol131.zdjavapol131.service.BooksService;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 @Controller

@@ -13,7 +13,6 @@ import pl.sda.zdjavapol131.zdjavapol131.repository.dao.UserEntity;
 import pl.sda.zdjavapol131.zdjavapol131.service.RegistrationService;
 import pl.sda.zdjavapol131.zdjavapol131.service.UserService;
 
-import java.util.List;
 
 @Controller
 @CrossOrigin(origins = "http://localhost:4200")
