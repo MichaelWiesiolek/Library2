@@ -30,10 +30,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers("/register").permitAll()
                                 .requestMatchers("/index").permitAll()
-//                                .requestMatchers("/books").hasAuthority("USER")
-//                                .requestMatchers(("/reservation")).permitAll()
-//                                .requestMatchers("/users").hasAuthority("USER")
-                                .requestMatchers("/reservations").hasAuthority("USER")
+                                .requestMatchers("/books").permitAll()
+                                .requestMatchers(("/reservation")).hasAuthority("USER")
+                                .requestMatchers("/users").hasAuthority("ADMIN")
+                                .requestMatchers("/showReservations").hasAuthority("ADMIN")
+                                .requestMatchers("/book").hasAuthority("ADMIN")
                                 .anyRequest().permitAll()
                 ).formLogin(
                         form -> form
@@ -42,8 +43,10 @@ public class SecurityConfig {
                 ).logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                                .logoutSuccessUrl("/index")
                                 .permitAll()
-                ).headers(x -> x.frameOptions(y -> y.sameOrigin()));
+                ).headers(x -> x.frameOptions(y -> y.sameOrigin()))
+                .exceptionHandling(x -> x.accessDeniedPage("/accessDenied"));
         return http.build();
     }
 

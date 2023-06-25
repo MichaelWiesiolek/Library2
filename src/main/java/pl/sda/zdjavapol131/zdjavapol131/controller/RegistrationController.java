@@ -13,7 +13,6 @@ import pl.sda.zdjavapol131.zdjavapol131.repository.dao.UserEntity;
 import pl.sda.zdjavapol131.zdjavapol131.service.RegistrationService;
 import pl.sda.zdjavapol131.zdjavapol131.service.UserService;
 
-import java.util.List;
 
 @Controller
 @CrossOrigin(origins = "http://localhost:4200")
@@ -34,11 +33,6 @@ public class RegistrationController {
         model.addAttribute("user", user);
         return "register";
     }
-
-//    @PostMapping(path = "/register/save")
-//    public String registration(@Valid @RequestBody UserDto userDto){
-//       return registrationService.userRegistration(userDto);
-//    }
 
     @PostMapping("/register/save")
     public String registration(@Valid @ModelAttribute("user") UserDto userDto, BindingResult result, Model model){

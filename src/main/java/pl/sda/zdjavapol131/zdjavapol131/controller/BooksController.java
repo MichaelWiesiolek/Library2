@@ -1,10 +1,10 @@
 package pl.sda.zdjavapol131.zdjavapol131.controller;
 
-import org.attoparser.dom.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.zdjavapol131.zdjavapol131.model.dto.BookDto;
 import pl.sda.zdjavapol131.zdjavapol131.repository.dao.BooksEntity;
@@ -62,6 +62,26 @@ public class BooksController {
         // employees
         model.addAttribute("listBook", listBooks);
         return "books";
+    }
+    @GetMapping("/book")
+    public String showCreationForm(Model model){
+        BookDto book = new BookDto();
+        List<String> listCategory = booksService.getCategories();
+        model.addAttribute("listCategory",listCategory);
+        model.addAttribute("book", book);
+        return "book";
+    }
+
+
+    @PostMapping("/book/new")
+    public String registration(@ModelAttribute("user") BookDto bookDto, BindingResult result, Model model){
+
+        if(result.hasErrors()){
+            model.addAttribute("book", bookDto);
+            return "/book";
+        }
+        booksService.createNewBook(bookDto);
+        return "redirect:/book?success";
     }
 
 
