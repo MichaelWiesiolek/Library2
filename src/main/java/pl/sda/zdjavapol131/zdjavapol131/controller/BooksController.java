@@ -18,15 +18,16 @@ public class BooksController {
     private BooksService booksService;
 
     @Autowired
-    public BooksController(BooksService booksService){this.booksService = booksService;}
+    public BooksController(BooksService booksService){
+        this.booksService = booksService;}
 
 
-//    @GetMapping("/books")
-//   public String getAllBooks(Model model) {
-//        List<BooksEntity> books = booksService.getAllBooks();
-//        model.addAttribute("books",books);
-//        return "books";
-//    }
+    @GetMapping("/all books")
+   public String getAllBooks(Model model) {
+        List<BooksEntity> books = booksService.getAllBooks();
+        model.addAttribute("books",books);
+        return "books";
+    }
 
     @RequestMapping(method = RequestMethod.GET, path = "/books", params = {"sortBy"})
     public List<BooksEntity> getSortedBooks(@RequestParam(name = "sortBy", required = false) String parameter) {
@@ -83,13 +84,9 @@ public class BooksController {
         booksService.createNewBook(bookDto);
         return "redirect:/book?success";
     }
-
-
-
-
-
-
-
+    public boolean getTrue(){
+        return true;
+    }
 
 
 

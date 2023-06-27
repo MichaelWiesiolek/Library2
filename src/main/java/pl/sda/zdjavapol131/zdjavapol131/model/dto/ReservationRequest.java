@@ -12,5 +12,6 @@ public class ReservationRequest {
     private String email;
     private String phoneNumber;
     private LocalDate lendingDate;
+    private String delivery;
     private List<Integer> reservationContent = new ArrayList<>();
 }

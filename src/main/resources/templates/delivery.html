@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Delivery</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/index}">Final Project Library</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/delivery}">Book delivery</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row col-md-10">
+        <h2>Books ready to delivery</h2>
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+        <tr>
+            <th>
+                <a style="color: #ff0000;" th:href="@{'/page/' + ${currentPage} + '?sort-field=id&sort-dir=' + ${reverseSortDir}}">Id</a>
+            </th>
+            <th>
+                <a style="color: #d000ff;" th:href="@{'/page/' + ${currentPage} + '?sort-field=title&sort-dir=' + ${reverseSortDir}}">Title</a>
+            </th>
+            <th>
+                <a style="color: #2bde11;" th:href="@{'/page/' + ${currentPage} + '?sort-field=author&sort-dir=' + ${reverseSortDir}}">Author</a>
+            </th>
+            <th>
+                <a style="color: #ffb700;" th:href="@{'/page/' + ${currentPage} + '?sort-field=category&sort-dir=' + ${reverseSortDir}}">Category</a>
+            </th>
+            <th>
+                <a style="color: #00ffc4;" th:href="@{'/page/' + ${currentPage} + '?sort-field=publisher&sort-dir=' + ${reverseSortDir}}">Publisher</a>
+            </th>
+            <th>
+                <a style="color: red;" th:href="@{'/page/' + ${currentPage} + '?sort-field=releaseDate&sort-dir=' + ${reverseSortDir}}">Release date</a>
+            </th>
+            <th>
+                <a style="color: #00ffc4;" th:href="@{'/page/' + ${currentPage} + '?sort-field=publisher&sort-dir=' + ${reverseSortDir}}">Price</a>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each = "listBooks : ${listBook}">
+            <td th:text = "${listBooks.id}"></td>
+            <td th:text = "${listBooks.title}"></td>
+            <td th:text = "${listBooks.author}"></td>
+            <td th:text = "${listBooks.category}"></td>
+            <td th:text = "${listBooks.publisher}"></td>
+            <td th:text = "${listBooks.releaseDate}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div th:if="${totalPages > 1}">
+        <div class="row col-sm-10">
+            <div class="col-sm-2">
+                Total books: <strong>[[${totalItems}]]</strong>
+            </div>
+            <div class="col-sm-1">
+                    <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                        <a th:href="@{'/page/' + ${i} + '?sort-field=' + ${sortField} + '&sort-dir=' + ${sortDir}}"
+                           th:if="${currentPage != i}">[[${i}]]</a>
+                        <span th:unless="${currentPage != i}">[[${i}]]</span>
+                    </span>
+            </div>
+            <div class="col-sm-1">
+                <a th:href="@{'/page/' + ${currentPage + 1} + '?sort-field=' + ${sortField} + '&sort-dir=' + ${sortDir}}"
+                   th:if="${currentPage < totalPages}">
+                    Next
+                </a>
+                <span th:unless="${currentPage < totalPages}">Next</span>
+            </div>
+            <div class="col-sm-1">
+                <a th:href="@{'/page/' + ${totalPages} + '?sort-field=' + ${sortField} + '&sort-dir=' + ${sortDir}}"
+                   th:if="${currentPage < totalPages}">
+                    Last
+                </a>
+                <span th:unless="${currentPage < totalPages}">Last</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row col-md-10">
+            <h2>Total price: </h2>
+        </div>
+</body>
+</html>
